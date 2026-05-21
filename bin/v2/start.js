@@ -11,6 +11,7 @@ const run = async () => {
   const input = parseInput();
 
   if (input.action === "--help" || input.action === "-h" || input.action === "help") return showUsage(version);
+  console.log("input : ", input);
 
   const command = resolveCommand(input.cmd);
 
