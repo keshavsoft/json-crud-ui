@@ -1,10 +1,10 @@
-import { locateSource } from "./addListeners/steps/locateSource.js";
-import { locateDestination } from "./addListeners/steps/locateDestination.js";
+import { locateSource } from "./htmlIdClick/steps/locateSource.js";
+import { locateDestination } from "./htmlIdClick/steps/locateDestination.js";
 
-import { createProject } from "./addListeners/steps/createProject.js";
-import { announce } from "./addListeners/steps/announce.js";
+import { createProject } from "./htmlIdClick/steps/createProject.js";
+import { announce } from "./htmlIdClick/steps/announce.js";
 
-import resolveFolderName from "./addListeners/steps/resolveFolderName.js";
+import resolveFolderName from "./htmlIdClick/steps/resolveFolderName.js";
 
 export default ({ folderName = "", toPath = process.cwd(), inAnnounce = true }) => {
     const resolvedFolderName = resolveFolderName({
