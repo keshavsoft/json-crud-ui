@@ -1,11 +1,8 @@
-// import endPointsJs from "../tasks/actions/EndPointsJs/ShowAll/index.js";
-import appJs from "../tasks/actions/appJs.js";
-import endPointsJs from "../tasks/actions/EndPointsJs/index.js";
+import init from "../commands/init.js";
 
 // resolveCommand.js
 const map = {
-    endPointsJs,
-    appJs
+    init
 };
 
 export default function resolveCommand(cmd) {

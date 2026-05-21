@@ -1,7 +1,7 @@
 import fs from "fs";
 
-export const createFolder = ({ source, destination }) => {
+export const createProject = ({ source, destination }) => {
     fs.mkdirSync(destination, { recursive: true });
-
+    
     fs.cpSync(source, destination, { recursive: true });
 };

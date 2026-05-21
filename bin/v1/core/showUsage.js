@@ -22,7 +22,7 @@ export default function showUsage(version) {
     const r = "\x1b[0m";
 
     console.log(`
-${c}🚀 KSchema Api Generator v${version}${r}
+${c}🚀 json-crud-ui v${version}${r}
 
 ${y}Usage:${r}
   ${g}npx @keshavsoft/kschema-api-gen${r} <command> [options]

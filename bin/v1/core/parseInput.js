@@ -1,8 +1,9 @@
 export default function parseInput() {
-    const [action] = process.argv.slice(2);
+    const [cmd, folderName] = process.argv.slice(2);
 
     return {
-        action: action || null,
+        cmd: cmd || null,
+        folderName: folderName || null,
         toPath: process.cwd()
     };
 };

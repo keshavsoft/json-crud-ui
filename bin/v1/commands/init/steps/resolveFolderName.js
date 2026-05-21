@@ -1,7 +1,7 @@
 import fs from "fs";
 
-export default function resolveFolderName({ name }) {
-    const defaultFolerName = "KSTable1";
+export default function resolveFolderName({ name, inType = "basic" }) {
+    const defaultFolerName = "Index";
 
     // case 1: force new → timestamp
     if (name === null) {
@@ -10,10 +10,7 @@ export default function resolveFolderName({ name }) {
 
     // case 2: user provided → strict
     if (fs.existsSync(name)) {
-        return {
-            KTF: false,
-            KReason: `Folder already exists : ${name}`
-        };
+        throw new Error(`Folder already exists: ${name}`);
     };
 
     return name;
