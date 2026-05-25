@@ -1,7 +1,14 @@
-````md id="4ij2q4"
 # Development Guide
 
-This document explains the internal development workflow of `kschema-api-check`.
+This document explains the internal development workflow and architecture of `json-crud-ui`.
+
+---
+
+# Purpose
+
+`json-crud-ui` is a modular CLI scaffolding tool designed to generate structured CRUD UI applications using reusable conventions and lifecycle-driven architecture.
+
+The goal is to standardize frontend project setup and reduce repetitive boilerplate creation.
 
 ---
 
@@ -9,19 +16,19 @@ This document explains the internal development workflow of `kschema-api-check`.
 
 Clone repository:
 
-```bash id="6k0jtu"
-git clone https://github.com/keshavsoft/kschema-api-check.git
-````
+```bash
+git clone https://github.com/keshavsoft/json-crud-ui.git
+```
 
 Move into project:
 
-```bash id="p3iw8d"
-cd kschema-api-check
+```bash
+cd json-crud-ui
 ```
 
 Install dependencies:
 
-```bash id="f1bhdr"
+```bash
 npm install
 ```
 
@@ -29,235 +36,260 @@ npm install
 
 # Folder Structure
 
-```txt id="q5q9ka"
+```txt
 bin/
- └── v10/
-      ├── core/
+ ├── core/
+ │    ├── getLatestVersion.js
+ │    └── loadRunner.js
+ │
+ └── v3/
       ├── commands/
-      ├── tasks/
-      │    ├── actions/
-      │    ├── common/
-      │    └── tables/
+      ├── core/
+      ├── start.js
+      └── cli.js
 
+docs/
 test/
 ```
 
 ---
 
-# Architecture
+# Architecture Overview
 
-The project is divided into layers.
+The project is divided into layered responsibilities.
 
-## core
+```txt
+cli.js
+   ↓
+loadRunner.js
+   ↓
+v3/start.js
+   ↓
+resolveCommand.js
+   ↓
+commands/
+```
 
-Handles:
-
-* parsing
-* command resolving
-* usage/help
-* startup flow
+This creates a scalable CLI execution pipeline.
 
 ---
 
-## commands
+# Entry Point
 
-Responsible for:
+Main executable:
 
-* command mapping
-* command routing
+```txt
+bin/cli.js
+```
+
+Responsibilities:
+
+* load latest runtime version
+* dynamically import runtime
+* execute runtime startup
 
 Example:
 
-```txt id="vxux8w"
-endPointsJs
-appJs
+```js
+const version = getLatestVersion();
+
+const runner = await loadRunner(version);
+
+await runner();
 ```
 
 ---
 
-## tasks/actions
+# Dynamic Runtime Loading
 
-Contains actual feature execution.
+The CLI supports runtime versioning.
 
 Example:
 
-```txt id="3s4x8p"
-EndPointsJs/
- ├── ShowAll/
- ├── Insert/
- └── index.js
+```js
+const mod = await import(`../${version}/start.js`);
 ```
+
+Benefits:
+
+* version isolation
+* safer upgrades
+* backward compatibility
+* experimental runtime support
 
 ---
 
-# Testing Workflow
-
-The `test` folder is used for local feature testing.
-
-Example:
-
-```txt id="l5zjj3"
-test/
- ├── end-points.js
- └── insert.js
-```
-
----
-
-# Running Tests
-
-## Example: ShowAll
-
-File:
-
-```txt id="gvsk0n"
-test/insert.js
-```
-
-Run:
-
-```bash id="pw2b0j"
-node test/insert.js
-```
-
----
-
-# Example Test File
-
-```js id="1y7dqs"
-import getLatestVersion from "../bin/core/getLatestVersion.js";
-
-const load = async (cmd) => {
-    const v = getLatestVersion();
-
-    return (await import(`../bin/${v}/commands/exportCommands/${cmd}.js`)).default;
-};
-
-const startFunc = async () => {
-    const func = await load("endPointsJs");
-
-    func({
-        action: "ShowAll",
-        toPath: process.cwd()
-    });
-};
-
-startFunc().then();
-```
-
----
-
-# Why Test Folder Exists
-
-The `test` folder allows:
-
-* isolated testing
-* rapid debugging
-* command execution without npm publish
-* direct action testing
-* architecture validation
-
-This makes development much faster.
-
----
-
-# Creating New Actions
-
-Example:
-
-```txt id="j11k8t"
-tasks/actions/EndPointsJs/MyNewAction
-```
-
-Then register inside:
-
-```txt id="r5j4zf"
-tasks/actions/EndPointsJs/index.js
-```
-
-Example:
-
-```js id="ln0w9f"
-case "MyNewAction":
-    myNewAction();
-
-    break;
-```
-
----
-
-# Usage Strategy
-
-There are two levels of usage help.
-
-## Global Usage
+# Runtime Layer
 
 Located at:
 
-```txt id="1hy6ig"
-core/showUsage.js
+```txt
+bin/v3/start.js
 ```
 
-Used when:
+Responsibilities:
 
-```bash id="34o8mw"
-npx kschema-api-check
+* parse CLI input
+* validate commands
+* resolve command handlers
+* execute commands
+
+---
+
+# Core Layer
+
+Located at:
+
+```txt
+bin/v3/core/
+```
+
+Handles:
+
+* command parsing
+* command resolution
+* usage/help system
+* startup orchestration
+
+Example files:
+
+```txt
+parseInput.js
+resolveCommand.js
+showUsage.js
 ```
 
 ---
 
-## Command Usage
+# Command Resolver
 
-Located inside each command/action module.
+Command routing is centralized.
 
 Example:
 
-```txt id="zv0brm"
-tasks/actions/EndPointsJs/showUsage.js
+```js
+const map = {
+    init,
+    addListeners,
+    htmlIdClick
+};
+
+return map[cmd] || null;
 ```
 
-Used when:
+Benefits:
 
-```bash id="4b4egp"
-npx kschema-api-check endPointsJs
+* predictable command mapping
+* scalable command registration
+* isolated command execution
+
+---
+
+# Commands Layer
+
+Located at:
+
+```txt
+bin/v3/commands/
+```
+
+Responsibilities:
+
+* generate folders
+* generate files
+* scaffold architecture
+* attach reusable conventions
+
+Example commands:
+
+```txt
+init.js
+addListeners.js
+htmlIdClick.js
 ```
 
 ---
 
-# Recommended Development Flow
+# Development Workflow
 
-1. Create action
-2. Create local test file
-3. Run with `node test/...`
-4. Validate output
-5. Integrate into command flow
-6. Publish
+Recommended workflow:
+
+1. Create command
+2. Register in resolver
+3. Test locally
+4. Validate generated structure
+5. Refactor reusable logic
+6. Publish new version
+
+---
+
+# Testing Strategy
+
+The `test` folder is used for isolated development testing.
+
+Example:
+
+```txt
+test/
+```
+
+Typical testing:
+
+```bash
+node test/sample.js
+```
+
+This allows rapid debugging without publishing to npm.
+
+---
+
+# Design Principles
+
+The architecture encourages:
+
+* modularity
+* reusable conventions
+* lifecycle separation
+* scalable folder structures
+* isolated responsibilities
+* convention-driven development
+
+---
+
+# Philosophy
+
+```txt
+Developers should focus on business logic,
+not repetitive project setup.
+```
+
+---
+
+# Future Direction
+
+Possible future additions:
+
+* component generators
+* route generators
+* form generators
+* table generators
+* plugin system
+* configuration-driven scaffolding
+* theme support
+* UI template presets
 
 ---
 
 # Notes
 
 * Uses ES Modules
-* Keep actions isolated
-* Avoid business logic in core
-* Commands should only route
-* Actions should execute logic
+* Runtime is version-driven
+* Commands remain isolated
+* Core layer should stay lightweight
+* Scaffolding should remain reusable
 
 ---
 
-# Future Improvements
+# Conclusion
 
-* automated test runner
-* snapshot testing
-* schema validation
-* interactive prompts
-* auto-generated help menus
-
----
-
-# Philosophy
-
-> Build reusable developer tooling with clean architecture.
-
-```
-```
+`json-crud-ui` is designed as a scalable frontend scaffolding ecosystem focused on reusable architecture, predictable structure, and faster CRUD UI development.
