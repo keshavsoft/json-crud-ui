@@ -1,4 +1,4 @@
-<!-- docs/index.html -->
+<!-- docs/getting-started.html -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,9 +6,10 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>json-crud-ui</title>
+    <title>Getting Started - json-crud-ui</title>
 
     <style>
         * {
@@ -97,53 +98,22 @@
             padding: 50px;
         }
 
-        .Hero {
+        .Section {
             margin-bottom: 60px;
         }
 
-        .Hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .Hero p {
-            max-width: 800px;
-            color: #cbd5e1;
-            font-size: 20px;
-        }
-
-        .Section {
-            margin-top: 50px;
-        }
-
+        .Section h1,
         .Section h2 {
-            margin-bottom: 20px;
             color: #38bdf8;
+            margin-bottom: 20px;
         }
 
-        .CardGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .Card {
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 10px;
-        }
-
-        .Card h3 {
-            margin-bottom: 10px;
-        }
-
-        .Card p {
+        .Section p {
             color: #cbd5e1;
         }
 
-        .CodeBlock {
-            background: #111827;
+        .Box {
+            background: #1e293b;
             padding: 25px;
             border-radius: 10px;
             margin-top: 20px;
@@ -185,13 +155,6 @@
                 Getting Started
             </a>
 
-            <a href="https://github.com/keshavsoft/json-crud-ui" target="_blank">
-
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="20"
-                    style="filter: invert(1);">
-
-                GitHub
-            </a>
         </div>
 
     </nav>
@@ -228,91 +191,16 @@
 
         <main class="Content">
 
-            <section class="Hero">
+            <section class="Section">
 
                 <h1>
-                    Convention Driven UI
+                    Getting Started
                 </h1>
 
                 <p>
-                    A modular UI scaffolding tool for building
-                    structured JSON CRUD applications using reusable
-                    conventions and generated architecture.
+                    Install json-crud-ui and initialize your first
+                    structured CRUD UI project.
                 </p>
-
-            </section>
-
-            <section class="Section">
-
-                <h2>
-                    Why This Project Exists
-                </h2>
-
-                <p>
-                    Most frontend CRUD projects repeat the same setup
-                    process repeatedly. json-crud-ui standardizes
-                    project structure and startup lifecycle.
-                </p>
-
-            </section>
-
-            <section class="Section">
-
-                <h2>
-                    Features
-                </h2>
-
-                <div class="CardGrid">
-
-                    <div class="Card">
-
-                        <h3>
-                            CLI Scaffolding
-                        </h3>
-
-                        <p>
-                            Generate projects instantly.
-                        </p>
-
-                    </div>
-
-                    <div class="Card">
-
-                        <h3>
-                            Modular Structure
-                        </h3>
-
-                        <p>
-                            Organize startup lifecycle cleanly.
-                        </p>
-
-                    </div>
-
-                    <div class="Card">
-
-                        <h3>
-                            Reusable Patterns
-                        </h3>
-
-                        <p>
-                            Encourage predictable architecture.
-                        </p>
-
-                    </div>
-
-                    <div class="Card">
-
-                        <h3>
-                            Scalable Design
-                        </h3>
-
-                        <p>
-                            Suitable for growing projects.
-                        </p>
-
-                    </div>
-
-                </div>
 
             </section>
 
@@ -322,7 +210,7 @@
                     Installation
                 </h2>
 
-                <div class="CodeBlock">
+                <div class="Box">
 
                     <pre>
 npm install json-crud-ui
@@ -335,10 +223,10 @@ npm install json-crud-ui
             <section class="Section">
 
                 <h2>
-                    Quick Start
+                    Initialize Project
                 </h2>
 
-                <div class="CodeBlock">
+                <div class="Box">
 
                     <pre>
 npx json-crud-ui init
@@ -348,10 +236,55 @@ npx json-crud-ui init
 
             </section>
 
+            <section class="Section">
+
+                <h2>
+                    Generated Structure
+                </h2>
+
+                <div class="Box">
+
+                    <pre>
+Index/
+    FormLoad/
+        DomContentLoaded/
+            buildHeader.js
+            buildMenuItem.js
+            runAfterDomLoad.js
+                    </pre>
+
+                </div>
+
+            </section>
+
+            <section class="Section">
+
+                <h2>
+                    Lifecycle Overview
+                </h2>
+
+                <div class="Box">
+
+                    <pre>
+Application Start
+        ↓
+DOMContentLoaded
+        ↓
+runAfterDomLoad.js
+        ↓
+Build UI Modules
+        ↓
+Attach Behaviors
+                    </pre>
+
+                </div>
+
+            </section>
+
             <section class="Footer">
 
                 <p>
-                    json-crud-ui • Modular CRUD UI Scaffolding
+                    json-crud-ui • Getting Started Documentation
                 </p>
 
             </section>

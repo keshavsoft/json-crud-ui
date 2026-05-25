@@ -4,6 +4,10 @@ A modular UI scaffolding tool for building structured JSON CRUD applications usi
 
 ---
 
+# Live Demo
+
+[View Demo](https://keshavsoft.github.io/json-crud-ui/)
+
 # Why This Project Exists
 
 Most frontend CRUD projects start the same way:
