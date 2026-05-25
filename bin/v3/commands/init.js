@@ -17,6 +17,4 @@ export default ({ folderName = "", toPath = process.cwd(), inAnnounce = true }) 
     createProject({ source, destination });
 
     if (inAnnounce) announce({ inResolvedFolderName: resolvedFolderName });
-
-    console.log("aaaaaaaaa ", folderName, toPath, resolvedFolderName);
 };
