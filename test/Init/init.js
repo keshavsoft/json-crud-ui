@@ -1,6 +1,6 @@
-import getLatestVersion from "../bin/core/getLatestVersion.js";
+import getLatestVersion from "../../bin/core/getLatestVersion.js";
 
-const commandToSend = "int";
+const commandToSend = "init";
 
 const load = async (cmd) => {
     const v = getLatestVersion();
