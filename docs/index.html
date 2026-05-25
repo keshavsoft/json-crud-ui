@@ -1,65 +1,131 @@
+<!-- docs/index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>json-crud-ui</title>
 
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             background: #0f172a;
             color: white;
             font-family: Arial, Helvetica, sans-serif;
             line-height: 1.7;
         }
 
-        .Container {
-            width: 90%;
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 0;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .Navbar {
+            height: 70px;
+            background: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid #1e293b;
+            position: sticky;
+            top: 0;
+        }
+
+        .Logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .NavLinks {
+            display: flex;
+            gap: 25px;
+        }
+
+        .NavLinks a {
+            color: #cbd5e1;
+        }
+
+        .NavLinks a:hover {
+            color: white;
+        }
+
+        .Layout {
+            display: flex;
+        }
+
+        .Sidebar {
+            width: 260px;
+            min-height: calc(100vh - 70px);
+            background: #111827;
+            border-right: 1px solid #1e293b;
+            padding: 30px 20px;
+        }
+
+        .Sidebar h3 {
+            margin-bottom: 20px;
+            color: #38bdf8;
+        }
+
+        .Sidebar ul {
+            list-style: none;
+        }
+
+        .Sidebar li {
+            margin-bottom: 15px;
+        }
+
+        .Sidebar a {
+            color: #cbd5e1;
+        }
+
+        .Sidebar a:hover {
+            color: white;
+        }
+
+        .Content {
+            flex: 1;
+            padding: 50px;
         }
 
         .Hero {
-            padding: 80px 0;
+            margin-bottom: 60px;
         }
 
         .Hero h1 {
-            font-size: 60px;
+            font-size: 48px;
             margin-bottom: 20px;
         }
 
         .Hero p {
-            font-size: 22px;
-            color: #cbd5e1;
             max-width: 800px;
+            color: #cbd5e1;
+            font-size: 20px;
         }
 
         .Section {
-            margin-top: 80px;
+            margin-top: 50px;
         }
 
         .Section h2 {
-            font-size: 40px;
             margin-bottom: 20px;
-        }
-
-        .Section p {
-            color: #cbd5e1;
-            font-size: 18px;
+            color: #38bdf8;
         }
 
         .CardGrid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
         .Card {
@@ -69,27 +135,29 @@
         }
 
         .Card h3 {
-            margin-top: 0;
+            margin-bottom: 10px;
         }
 
-        .Flow {
+        .Card p {
+            color: #cbd5e1;
+        }
+
+        .CodeBlock {
             background: #111827;
-            padding: 30px;
+            padding: 25px;
             border-radius: 10px;
+            margin-top: 20px;
             overflow-x: auto;
-            margin-top: 30px;
         }
 
         pre {
-            margin: 0;
             color: #38bdf8;
-            font-size: 18px;
         }
 
         .Footer {
-            margin-top: 100px;
-            padding: 40px 0;
-            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #1e293b;
             color: #94a3b8;
         }
     </style>
@@ -97,201 +165,191 @@
 
 <body>
 
-    <div class="Container">
+    <nav class="Navbar">
 
-        <section class="Hero">
+        <div class="Logo">
+            json-crud-ui
+        </div>
 
-            <h1>json-crud-ui</h1>
+        <div class="NavLinks">
 
-            <p>
-                A modular UI scaffolding tool for building structured
-                JSON CRUD applications using reusable conventions
-                and generated architecture.
-            </p>
+            <a href="./index.html">
+                Home
+            </a>
 
-        </section>
+            <a href="./architecture.html">
+                Architecture
+            </a>
 
-        <section class="Section">
+            <a href="./getting-started.html">
+                Getting Started
+            </a>
 
-            <h2>Why This Project Exists</h2>
+        </div>
 
-            <p>
-                Most frontend CRUD projects repeat the same setup process.
-                Developers manually create folders, startup logic,
-                DOM initialization, and UI structure repeatedly.
-            </p>
+    </nav>
 
-            <p>
-                json-crud-ui was created to standardize that workflow
-                and provide a reusable architectural starting point.
-            </p>
+    <div class="Layout">
 
-        </section>
+        <aside class="Sidebar">
 
-        <section class="Section">
+            <h3>Documentation</h3>
 
-            <h2>Features</h2>
+            <ul>
 
-            <div class="CardGrid">
+                <li>
+                    <a href="./index.html">
+                        Introduction
+                    </a>
+                </li>
 
-                <div class="Card">
-                    <h3>CLI Scaffolding</h3>
+                <li>
+                    <a href="./architecture.html">
+                        Architecture
+                    </a>
+                </li>
 
-                    <p>
-                        Generate structured projects instantly.
-                    </p>
+                <li>
+                    <a href="./getting-started.html">
+                        Getting Started
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <main class="Content">
+
+            <section class="Hero">
+
+                <h1>
+                    json-crud-ui
+                </h1>
+
+                <p>
+                    A modular UI scaffolding tool for building
+                    structured JSON CRUD applications using reusable
+                    conventions and generated architecture.
+                </p>
+
+            </section>
+
+            <section class="Section">
+
+                <h2>
+                    Why This Project Exists
+                </h2>
+
+                <p>
+                    Most frontend CRUD projects repeat the same setup
+                    process repeatedly. json-crud-ui standardizes
+                    project structure and startup lifecycle.
+                </p>
+
+            </section>
+
+            <section class="Section">
+
+                <h2>
+                    Features
+                </h2>
+
+                <div class="CardGrid">
+
+                    <div class="Card">
+
+                        <h3>
+                            CLI Scaffolding
+                        </h3>
+
+                        <p>
+                            Generate projects instantly.
+                        </p>
+
+                    </div>
+
+                    <div class="Card">
+
+                        <h3>
+                            Modular Structure
+                        </h3>
+
+                        <p>
+                            Organize startup lifecycle cleanly.
+                        </p>
+
+                    </div>
+
+                    <div class="Card">
+
+                        <h3>
+                            Reusable Patterns
+                        </h3>
+
+                        <p>
+                            Encourage predictable architecture.
+                        </p>
+
+                    </div>
+
+                    <div class="Card">
+
+                        <h3>
+                            Scalable Design
+                        </h3>
+
+                        <p>
+                            Suitable for growing projects.
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <div class="Card">
-                    <h3>Modular Architecture</h3>
+            </section>
 
-                    <p>
-                        Separate startup lifecycle and UI logic cleanly.
-                    </p>
-                </div>
+            <section class="Section">
 
-                <div class="Card">
-                    <h3>Reusable Structure</h3>
+                <h2>
+                    Installation
+                </h2>
 
-                    <p>
-                        Create predictable project layouts across teams.
-                    </p>
-                </div>
+                <div class="CodeBlock">
 
-                <div class="Card">
-                    <h3>Convention Driven</h3>
-
-                    <p>
-                        Reduce repetitive setup decisions.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-        <section class="Section">
-
-            <h2>Installation</h2>
-
-            <div class="Flow">
-                <pre>
+                    <pre>
 npm install json-crud-ui
-                </pre>
-            </div>
+                    </pre>
 
-        </section>
+                </div>
 
-        <section class="Section">
+            </section>
 
-            <h2>Usage</h2>
+            <section class="Section">
 
-            <div class="Flow">
-                <pre>
+                <h2>
+                    Quick Start
+                </h2>
+
+                <div class="CodeBlock">
+
+                    <pre>
 npx json-crud-ui init
-                </pre>
-            </div>
+                    </pre>
 
-        </section>
-
-        <section class="Section">
-
-            <h2>Generated Structure</h2>
-
-            <div class="Flow">
-                <pre>
-Index/
-    FormLoad/
-        DomContentLoaded/
-            buildHeader.js
-            buildMenuItem.js
-            runAfterDomLoad.js
-                </pre>
-            </div>
-
-        </section>
-
-        <section class="Section">
-
-            <h2>Lifecycle Model</h2>
-
-            <div class="Flow">
-                <pre>
-Application Start
-        ↓
-DOMContentLoaded
-        ↓
-runAfterDomLoad.js
-        ↓
-Build UI Modules
-        ↓
-Attach Behaviors
-                </pre>
-            </div>
-
-        </section>
-
-        <section class="Section">
-
-            <h2>Design Goals</h2>
-
-            <div class="CardGrid">
-
-                <div class="Card">
-                    <h3>Scalable</h3>
-
-                    <p>
-                        Designed for long-term project growth.
-                    </p>
                 </div>
 
-                <div class="Card">
-                    <h3>Maintainable</h3>
+            </section>
 
-                    <p>
-                        Easier debugging through modular separation.
-                    </p>
-                </div>
+            <section class="Footer">
 
-                <div class="Card">
-                    <h3>Predictable</h3>
+                <p>
+                    json-crud-ui • Modular CRUD UI Scaffolding
+                </p>
 
-                    <p>
-                        Developers always know where things belong.
-                    </p>
-                </div>
+            </section>
 
-                <div class="Card">
-                    <h3>Reusable</h3>
-
-                    <p>
-                        Shared conventions across generated projects.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-        <section class="Section">
-
-            <h2>Future Vision</h2>
-
-            <p>
-                json-crud-ui is evolving toward a reusable frontend
-                scaffolding ecosystem with generators for routing,
-                forms, tables, components, and configuration-driven UI creation.
-            </p>
-
-        </section>
-
-        <section class="Footer">
-
-            <p>
-                json-crud-ui • Modular CRUD UI Scaffolding
-            </p>
-
-        </section>
+        </main>
 
     </div>
 

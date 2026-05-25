@@ -1,0 +1,85 @@
+<!-- docs/architecture.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Architecture - json-crud-ui</title>
+
+    <style>
+        body {
+            background: #0f172a;
+            color: white;
+            font-family: Arial;
+            padding: 40px;
+            line-height: 1.7;
+        }
+
+        h1,
+        h2 {
+            color: #38bdf8;
+        }
+
+        .Box {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        pre {
+            color: #38bdf8;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Architecture</h1>
+
+    <p>
+        json-crud-ui follows a modular lifecycle-based architecture.
+    </p>
+
+    <div class="Box">
+
+        <pre>
+Application Start
+        ↓
+DOMContentLoaded
+        ↓
+runAfterDomLoad.js
+        ↓
+Build UI Modules
+        ↓
+Attach Behaviors
+        </pre>
+
+    </div>
+
+    <h2>Folder Responsibilities</h2>
+
+    <div class="Box">
+
+        <pre>
+Index/
+    FormLoad/
+        DomContentLoaded/
+        </pre>
+
+    </div>
+
+    <p>
+        Each folder is designed to isolate responsibilities
+        and improve scalability.
+    </p>
+
+</body>
+
+</html>
